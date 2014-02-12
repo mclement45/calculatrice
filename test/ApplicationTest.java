@@ -18,6 +18,8 @@ import play.libs.F.*;
 import static play.test.Helpers.*;
 import static org.fest.assertions.Assertions.*;
 
+import models.Calcul;
+
 
 /**
 *
@@ -28,17 +30,14 @@ import static org.fest.assertions.Assertions.*;
 public class ApplicationTest {
 
     @Test
-    public void simpleCheck() {
-        int a = 1 + 1;
-        assertThat(a).isEqualTo(2);
+    public void assert_addition(int x, int y, int r){
+        assertThat(new Calcul(x, y).addition()).isEqualTo(r);
     }
 
     @Test
-    public void renderTemplate() {
-        Content html = views.html.index.render("Your new application is ready.");
-        assertThat(contentType(html)).isEqualTo("text/html");
-        assertThat(contentAsString(html)).contains("Your new application is ready.");
+    public void testAddition(){
+        assert_addition(1,1,2);
+        assert_addition(2,2,4);
     }
-
 
 }
